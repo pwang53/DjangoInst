@@ -1,0 +1,9 @@
+<h1>Delete Post</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <!-- Django自带的保护Form措施，防止被攻击,以后都可以加 -->
+    {% csrf_token %}
+    <!-- 把form里面的每一个元素当做一个paragraph来显示出来 -->
+    <p>Do you want to delete "{{object.title}}"?</p>
+    <button type="submit" >Delete</button>
+</form>

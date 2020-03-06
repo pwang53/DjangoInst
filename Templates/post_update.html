@@ -1,0 +1,10 @@
+<h1>Edit Post</h1>
+<!-- enctype 是加密方式 -->
+<form action="" method="post" enctype="multipart/form-data">
+    <!-- Django自带的保护Form措施，防止被攻击,以后都可以加 -->
+    {% csrf_token %}
+    <!-- 把form里面的每一个元素当做一个paragraph来显示出来 -->
+    <!-- UpdateView传递的是一个form -->
+    {{ form.as_p }}
+    <button type="submit" >Save</button>
+</form>

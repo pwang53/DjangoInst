@@ -1,5 +1,6 @@
 from django.db import models
 from imagekit.models import ProcessedImageField  # 第三方库：django-image
+from django.urls import reverse
 
 
 # Create your models here.
@@ -7,6 +8,7 @@ from imagekit.models import ProcessedImageField  # 第三方库：django-image
 # https://docs.djangoproject.com/en/3.0/ref/models/fields/
 
 # 定义一个model
+
 class Post(models.Model):
     title = models.TextField(blank=True, null=True)
     image = ProcessedImageField(
@@ -22,3 +24,7 @@ class Post(models.Model):
         null=True
     )
 
+    # 这个方法是重定位到一个网页
+    def get_absolute_url(self):
+
+        return reverse('post_detail', args=[self.id])

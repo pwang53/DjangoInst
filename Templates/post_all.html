@@ -1,0 +1,17 @@
+{% load static %}
+<h1>All Posts</h1>
+<div>
+    <a href="{% url 'create_post' %}">Create A New Post</a>
+</div>
+<div>
+    <!-- 这里采用Django语法 -->
+    <!-- Django的view会给我提供一个posts的list-->
+    <!-- {}是Django语法 -->
+    <!-- 加一个 / 意思是直接访问host的路径而不是在原有基础上的路径 -->
+    <!-- ListView传递的是一个object_list -->
+    {% for p in object_list %}
+        <a href="{% url 'post_detail' p.id %}">
+            <img src="/{{p.image}}">
+        </a>
+    {% endfor %}
+</div>

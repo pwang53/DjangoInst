@@ -16,8 +16,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from Insta.views import HelloWorld
+from Insta.views import HelloWorld, PostsView, PostsDetailView, PostCreateView, PostUpdateView, PostDeleteView
 
 urlpatterns = [
-    path("", HelloWorld.as_view(), name='helloworld')
+    path('', HelloWorld.as_view(), name='helloworld'),
+    #如果url包含posts那么就访问PostView
+    path('posts/', PostsView.as_view(), name='posts'),
+    #<int:pk> 传递一个integer然后去数据库找primary key为这个int的数据然后response
+    path('post/<int:pk>', PostsDetailView.as_view(), name='post_detail'),
+    path('post/new/', PostCreateView.as_view(), name='create_post'),
+    path('post/update/<int:pk>', PostUpdateView.as_view(), name='update_post'),
+    path('post/delete/<int:pk>', PostDeleteView.as_view(), name='delete_post'),
+
 ]
