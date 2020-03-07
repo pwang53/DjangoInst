@@ -1,0 +1,10 @@
+<h1>Sign Up</h1>
+<!-- enctype 是加密方式 -->
+<form method="post" enctype="multipart/form-data">
+    <!-- Django自带的保护Form措施，防止被攻击,以后都可以加 -->
+    {% csrf_token %}
+    <!-- 把form里面的每一个元素当做一个paragraph来显示出来 -->
+    <!-- 传递的是一个form -->
+    {{ form.as_p }}
+    <button type="submit" >Sign up</button>
+</form>

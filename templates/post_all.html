@@ -1,0 +1,46 @@
+{% load static %}
+
+<!--unorder list -->
+<!-- template language -->
+<ul>
+    <!-- 如果访问的user是登录的
+         那么我就显示Hi，用户名 并且显示logout字样-->
+    {% if request.user.is_authenticated %}
+        <li>
+            Hi, {{request.user.username}}
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">Logout</a>
+        </li>
+    <!-- 如果访问的user不是登录的
+         那么就显示login字样 -->
+    {% else %}
+        <li>
+            Please log in first!
+        </li>
+        <li>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+        </li>
+    {% endif %}
+
+</ul>
+
+<h1>All Posts</h1>
+
+
+<div>
+    <a href="{% url 'create_post' %}">Create A New Post</a>
+</div>
+<div>
+    <!-- 这里采用Django语法 -->
+    <!-- Django的view会给我提供一个posts的list-->
+    <!-- {}是Django语法 -->
+    <!-- 加一个 / 意思是直接访问host的路径而不是在原有基础上的路径 -->
+    <!-- ListView传递的是一个object_list -->
+    {% for p in object_list %}
+        <a href="{% url 'post_detail' p.id %}">
+            <img src="/{{p.image}}">
+        </a>
+    {% endfor %}
+</div>

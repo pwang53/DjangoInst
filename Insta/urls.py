@@ -19,7 +19,6 @@ from django.urls import path, include
 from Insta.views import HelloWorld, PostsView, PostsDetailView, PostCreateView, PostUpdateView, PostDeleteView
 
 urlpatterns = [
-    path('', HelloWorld.as_view(), name='helloworld'),
     #如果url包含posts那么就访问PostView
     path('posts/', PostsView.as_view(), name='posts'),
     #<int:pk> 传递一个integer然后去数据库找primary key为这个int的数据然后response

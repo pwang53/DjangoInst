@@ -1,7 +1,7 @@
 from django.db import models
 from imagekit.models import ProcessedImageField  # 第三方库：django-image
 from django.urls import reverse
-
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 # 有不会的就谷歌Django官方文档: google Django Model Fields
@@ -28,3 +28,12 @@ class Post(models.Model):
     def get_absolute_url(self):
 
         return reverse('post_detail', args=[self.id])
+
+class InstaUser(AbstractUser):
+    profile_pic = ProcessedImageField(
+        upload_to='static/images/profiles',
+        format='JPEG',
+        options={'quality': 100},
+        blank=True,
+        null=True
+    )
